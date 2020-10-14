@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< Updated upstream
 import {FiArrowRight} from 'react-icons/fi';
 
 import './styles/global.css';
@@ -27,6 +28,13 @@ function App() {
           <FiArrowRight size={26} color="rgba (0, 0, 0, 0.6)" />
          </a>
       </div>
+=======
+
+function App() {
+  return (
+    <div className="App">
+     <h1> Hello Bicht </h1>
+>>>>>>> Stashed changes
     </div>
   );
 }
