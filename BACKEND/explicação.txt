@@ -1,0 +1,23 @@
+// Req = ReS 
+//localhost :3333
+
+
+
+// rota= conjunto 
+// recurso = usuario
+
+// metodos Http = GET, Post , Put , Delete 
+
+// Get = Buscar uma informação (Lista, Item )
+//Post = Criando uma informação 
+//Put = editando uma informação
+//Delete = Deletando uma informação 
+
+//Navegadores modo padrão get
+//utilizar insomina
+
+//Parametros 
+
+// Query Params: https://localhost:3333/users?search=diego 
+// Route Params: Method + parametro  https://localhost:3333/users/1 (identificar com rescurso)
+// Body: dados  https://localhost:3333/users/1 (identificar com rescurso)
