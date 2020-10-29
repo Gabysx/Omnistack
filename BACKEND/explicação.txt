@@ -21,3 +21,15 @@
 // Query Params: https://localhost:3333/users?search=diego 
 // Route Params: Method + parametro  https://localhost:3333/users/1 (identificar com rescurso)
 // Body: dados  https://localhost:3333/users/1 (identificar com rescurso)
+
+
+// MVC
+
+Model - Representação da tabela no banco 
+View - interface do usuario 
+Controllers - controle do que é mostrado ou não , entre servidor e cliente logica pura 
+
+
+Padrão do controllers -
+
+Index , show, delete , create , update

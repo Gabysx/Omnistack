@@ -9,7 +9,7 @@ export default class Orphanage {
     id: number;
 
     @Column()
-    name:string;
+    name: string;
 
     @Column()
     latitude: number;
@@ -27,7 +27,7 @@ export default class Orphanage {
     opening_hours: string;
 
    @Column()
-    open_weekends: boolean;
+    weekends_open: boolean;
 
 
 }
