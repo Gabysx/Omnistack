@@ -1,5 +1,4 @@
 import {Request, Response} from 'express';
-
 import { getRepository} from 'typeorm';
 import Orphanage from '../models/Orphanage';
 
@@ -10,12 +9,10 @@ export default {
 
         const orphanages = await orphanagesRepository.find();
         return response.json(orphanages);
-
-        
     },
 
     async create(request: Request, response:Response){
-
+    //variaveis 
         const { 
             name,
             latitude, 
