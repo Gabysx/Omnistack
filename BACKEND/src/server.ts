@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(routes);
-app.use('/Uploads' , express.static(path.join(__dirname,'..', 'Uploads')));
+app.use('/uploads' , express.static(path.join(__dirname, '../', 'uploads')));
 app.use(errorHandler);
 
 app.listen(3333);
