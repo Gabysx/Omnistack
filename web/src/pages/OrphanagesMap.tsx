@@ -24,7 +24,7 @@ function  OrphanagesMap(){
     console.log(orphanages);
 
     useEffect(()=> {
-        api.get('/orphanages').then(response =>{
+        api.get('orphanages').then((response: { data: React.SetStateAction<Orphanage[]>; }) =>{
             setOrphanages(response.data);
         })
         
