@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaWhatsapp } from "react-icons/fa";
+//import { FaWhatsapp } from "react-icons/fa";
 import { FiClock, FiInfo } from "react-icons/fi";
 import { Map, Marker, TileLayer } from "react-leaflet";
 import { useParams } from  'react-router-dom';
@@ -32,11 +32,11 @@ export default function Orphanage() {
   const params = useParams<OrphanageParams>();
 
   const [orphanage, setOrphanage] = useState<Orphanage>();
+
   useEffect(()=> {
-      api.get(`orphanages/${params.id}`).then(response => {
-          setOrphanage(response.data);
-      });
-      
+    api.get(`orphanages/${params.id}`).then(response => {
+        setOrphanage(response.data);
+    });
   }, [params.id]);
 
   if (!orphanage) {
@@ -111,24 +111,28 @@ export default function Orphanage() {
                 8h às 18h
               </div>
            {orphanage.wekeends_open ? (
-                <div className="open-on-weekends">
-                <FiInfo size={32} color="#39CC83" />
-                Atendemos <br />
+            <div className="open-on-weekends">
+              <FiInfo size={32} color="#39CC83" />
+              Atendemos <br />
               Fim de semana 
-              </div>
-            
-           ):(
+            </div>
+           ) : ( 
             <div className="open-on-weekends dont-open">
               <FiInfo size={32} color="#FF669D" />
-              Não atendemos <br />
+              Não atendemos  <br />
+              fim de semana 
             </div>
-           )}
+           ) }
            </div>
 
+            {/*
             <button type="button" className="contact-button">
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
             </button>
+
+
+            */  }      
           </div>
         </div>
       </main>

@@ -5,7 +5,7 @@ import mapMarkerImg from '../images/map-marker.svg';
 const mapIcon = Leaflet.icon({
     iconUrl: mapMarkerImg,
   
-    iconSize: [58, 68],
+    iconSize: [38, 48],
     iconAnchor: [29, 68],
     popupAnchor: [0, -60]
   })
