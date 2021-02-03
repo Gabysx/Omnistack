@@ -46,7 +46,7 @@ export class createOrphanages1602973947163 implements MigrationInterface {
                {
                    name:'weekends_open',
                    type:'boolean',
-                   default:false,
+                   
                },
             ],
         }))

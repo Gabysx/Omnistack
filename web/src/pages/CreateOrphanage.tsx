@@ -14,20 +14,20 @@ import api from "../services/api";
 
 
 export default function CreateOrphanage() {
-
+  
   const history = useHistory();
-
+  
   const [position, setPosition] = useState({latitude: 0, longitude: 0})
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
   const [instructions, setInstructions] = useState('');
   const [opening_hours, setOpeningHours] = useState('');
-  const [wekeends_open, setWekeendsOpen] = useState(true);
+  const [wekeends_open, setWekeendsOpen] = useState();
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
 
   function HandleMapClick(event: LeafletMouseEvent){
-    
+   
     const {lat , lng} = event.latlng;
     
     setPosition({
@@ -66,7 +66,7 @@ export default function CreateOrphanage() {
     data.append('longitude', String(longitude));
     data.append('instructions', instructions);
     data.append('opening_hours', opening_hours);
-    data.append('wekeends_open',String(wekeends_open));
+    data.append('wekeends_open', String(wekeends_open));
     
     images.forEach( image => {
       data.append('images', image);
@@ -77,8 +77,8 @@ export default function CreateOrphanage() {
       alert('Cadastro realizado com sucesso !!');
 
       history.push('/app');
-
-  }
+  
+    }
 
 
   return (
@@ -173,25 +173,19 @@ export default function CreateOrphanage() {
             </div>
 
             <div className="input-block">
-              <label htmlFor="open_on_weekends">Atende fim de semana</label>
+              <label htmlFor="weekends_open">Atende fim de semana</label>
 
               <div className="button-select">
                 <button 
-                  
                   type="button"
                   className={wekeends_open ? 'active' : ''}
-                  onClick={() => setWekeendsOpen(true)}
-                >
-                  Sim
-                </button>
+                  onClick={() => setWekeendsOpen(wekeends_open)}
+                > Sim </button>
                 <button 
-                  id="button-false"
                   type="button"
                   className={!wekeends_open ? 'active' : ''} 
-                  onClick={() => setWekeendsOpen(false)} 
-                >
-                  Não
-                   
+                  onClick={() => setWekeendsOpen(wekeends_open)} 
+                > Não
                 </button>
               </div>
             </div>
