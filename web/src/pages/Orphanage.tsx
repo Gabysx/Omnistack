@@ -19,6 +19,7 @@ interface Orphanage {
   opening_hours: string;
   wekeends_open: string;
   images: Array<{ 
+    id: number;
     url: string;
   }>;
 }
@@ -32,6 +33,8 @@ export default function Orphanage() {
   const params = useParams<OrphanageParams>();
 
   const [orphanage, setOrphanage] = useState<Orphanage>();
+
+  const [activeimageindex, setActiveimageindex] = useState(0);
 
   useEffect(()=> {
     api.get(`orphanages/${params.id}`).then(response => {
@@ -50,27 +53,24 @@ export default function Orphanage() {
 
       <main>
         <div className="orphanage-details">
-          <img src={orphanage.images[0].url} alt={orphanage.name} />
+          <img src={orphanage.images[activeimageindex].url} alt={orphanage.name} />
 
           <div className="images">
-            <button className="active" type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
+          {orphanage.images.map((image, index)=> {
+              return (
+                <button 
+                key={image.id} 
+                className={activeimageindex === index ? 'active' : '' }
+                type="button"
+                onClick={()=>{
+                  setActiveimageindex(index);
+                }}>
+                  <img src={image.url} alt={orphanage.name} />
+                </button>
+              );
+          })}
+         
+           
           </div>
           
           <div className="orphanage-details-content">
@@ -91,11 +91,11 @@ export default function Orphanage() {
                 <TileLayer 
                   url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                 />
-                <Marker interactive={false} icon={mapIcon} position={[orphanage.latitude, orphanage.longitude]} />
+                  <Marker interactive={false} icon={mapIcon} position={[orphanage.latitude, orphanage.longitude]} />
               </Map>
 
               <footer>
-                <a href="">Ver rotas no Google Maps</a>
+                <a target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/dir/?api=1&destination=${orphanage.latitude},${orphanage.longitude}`}>Ver rotas no Google Maps</a>
               </footer>
             </div>
 
@@ -130,8 +130,6 @@ export default function Orphanage() {
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
             </button>
-
-
             */  }      
           </div>
         </div>
