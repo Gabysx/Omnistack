@@ -17,7 +17,6 @@ export default function CreateOrphanage() {
 
   const history = useHistory();
 
-
   const [position, setPosition] = useState({latitude: 0, longitude: 0})
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
@@ -84,7 +83,7 @@ export default function CreateOrphanage() {
 
   return (
     <div id="page-create-orphanage">
-       <Sidebar />
+      <Sidebar />
 
       <main>
         <form  onSubmit={handleSumit} className="create-orphanage-form">
@@ -95,12 +94,11 @@ export default function CreateOrphanage() {
               center={[-27.2092052,-49.6401092]} 
               style={{ width: '100%', height: 280 }}
               zoom={15}
-              onclick={HandleMapClick}
-            >
+              onclick={HandleMapClick}>
+
               <TileLayer 
                 url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
               />
-
               { position.latitude !== 0 && (
                 <Marker
                   interactive={false} 
@@ -111,7 +109,6 @@ export default function CreateOrphanage() {
                   ]}
                 />
               )}
-
             </Map>
 
             <div className="input-block">
