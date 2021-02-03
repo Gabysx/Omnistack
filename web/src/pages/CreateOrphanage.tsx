@@ -180,6 +180,7 @@ export default function CreateOrphanage() {
 
               <div className="button-select">
                 <button 
+                  
                   type="button"
                   className={wekeends_open ? 'active' : ''}
                   onClick={() => setWekeendsOpen(true)}
@@ -187,9 +188,10 @@ export default function CreateOrphanage() {
                   Sim
                 </button>
                 <button 
+                  id="button-false"
                   type="button"
-                  className={!wekeends_open? 'active' : ''}
-                  onClick={() => setWekeendsOpen(false)}
+                  className={!wekeends_open ? 'active' : ''} 
+                  onClick={() => setWekeendsOpen(false)} 
                 >
                   Não
                    
