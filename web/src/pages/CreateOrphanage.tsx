@@ -14,21 +14,20 @@ import api from "../services/api";
 
 
 export default function CreateOrphanage() {
-
+  
   const history = useHistory();
-
-
+  
   const [position, setPosition] = useState({latitude: 0, longitude: 0})
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
   const [instructions, setInstructions] = useState('');
   const [opening_hours, setOpeningHours] = useState('');
-  const [wekeends_open, setWekeendsOpen] = useState(true);
+  const [wekeends_open, setWekeendsOpen] = useState();
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
 
   function HandleMapClick(event: LeafletMouseEvent){
-    
+   
     const {lat , lng} = event.latlng;
     
     setPosition({
@@ -67,7 +66,7 @@ export default function CreateOrphanage() {
     data.append('longitude', String(longitude));
     data.append('instructions', instructions);
     data.append('opening_hours', opening_hours);
-    data.append('wekeends_open',String(wekeends_open));
+    data.append('wekeends_open', String(wekeends_open));
     
     images.forEach( image => {
       data.append('images', image);
@@ -78,13 +77,13 @@ export default function CreateOrphanage() {
       alert('Cadastro realizado com sucesso !!');
 
       history.push('/app');
-
-  }
+  
+    }
 
 
   return (
     <div id="page-create-orphanage">
-       <Sidebar />
+      <Sidebar />
 
       <main>
         <form  onSubmit={handleSumit} className="create-orphanage-form">
@@ -95,12 +94,11 @@ export default function CreateOrphanage() {
               center={[-27.2092052,-49.6401092]} 
               style={{ width: '100%', height: 280 }}
               zoom={15}
-              onclick={HandleMapClick}
-            >
+              onclick={HandleMapClick}>
+
               <TileLayer 
                 url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
               />
-
               { position.latitude !== 0 && (
                 <Marker
                   interactive={false} 
@@ -111,7 +109,6 @@ export default function CreateOrphanage() {
                   ]}
                 />
               )}
-
             </Map>
 
             <div className="input-block">
@@ -176,25 +173,19 @@ export default function CreateOrphanage() {
             </div>
 
             <div className="input-block">
-              <label htmlFor="open_on_weekends">Atende fim de semana</label>
+              <label htmlFor="weekends_open">Atende fim de semana</label>
 
               <div className="button-select">
                 <button 
-                  
                   type="button"
                   className={wekeends_open ? 'active' : ''}
-                  onClick={() => setWekeendsOpen(true)}
-                >
-                  Sim
-                </button>
+                  onClick={() => setWekeendsOpen(wekeends_open)}
+                > Sim </button>
                 <button 
-                  id="button-false"
                   type="button"
                   className={!wekeends_open ? 'active' : ''} 
-                  onClick={() => setWekeendsOpen(false)} 
-                >
-                  Não
-                   
+                  onClick={() => setWekeendsOpen(wekeends_open)} 
+                > Não
                 </button>
               </div>
             </div>

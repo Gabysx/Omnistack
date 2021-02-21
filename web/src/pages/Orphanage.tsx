@@ -130,7 +130,7 @@ export default function Orphanage() {
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
             </button>
-            */  }      
+            */}      
           </div>
         </div>
       </main>
