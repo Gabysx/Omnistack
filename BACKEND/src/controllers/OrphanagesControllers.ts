@@ -1,16 +1,18 @@
 import {Request, Response} from 'express';
 import { getRepository} from 'typeorm';
+
+import Orphanage from '../models/Orphanage';
 import orphanageView from '../views/orphanages_view';
 import * as Yup from 'yup';
 
 
-import Orphanage from '../models/Orphanage';
+
 
 
 export default {
 
-
     async index (request: Request, response:Response) {
+
         const orphanagesRepository = getRepository(Orphanage);
 
         const orphanages = await orphanagesRepository.find({
@@ -23,6 +25,7 @@ export default {
     async show (request: Request, response:Response) {
 
         const {id} = request.params;
+
         const orphanagesRepository = getRepository(Orphanage);
 
         const orphanage = await orphanagesRepository.findOneOrFail(id, {
@@ -46,6 +49,7 @@ export default {
         const orphanagesRepository = getRepository(Orphanage);
 
         const requestImages = request.files as Express.Multer.File[];
+        
         const images = requestImages.map(image => {
             return { path: image.filename }
         }); 
